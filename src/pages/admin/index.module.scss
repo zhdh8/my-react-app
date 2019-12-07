@@ -1,0 +1,15 @@
+.pageHeader {
+  background-color: #20a0ff;
+  color: #fff;
+}
+
+.pageSideBar {
+  width: 230px;
+  height: calc(100vh - 64px);
+  background-color: #ccc;
+}
+
+.pageContent {
+  height: calc(100vh - 200px);
+  padding: 20px;
+}

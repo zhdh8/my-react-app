@@ -1,0 +1,30 @@
+.loginWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+
+  .loginForm {
+    width: 400px;
+    border-radius: 10px;
+    background-clip: padding-box;
+    padding: 35px;
+    background: #fff;
+    border: 1px solid #eaeaea;
+    -webkit-box-shadow: 0 0 25px #cac6c6;
+    box-shadow: 0 0 25px #cac6c6;
+
+    .loginTitle {
+      width: 100%;
+      margin-bottom: 30px;
+      text-align: center;
+      font-size: 22px;
+      color: #505458;
+    }
+
+    .loginBtn {
+      width: 100%;
+    }
+  }
+}
