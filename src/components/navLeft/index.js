@@ -63,9 +63,7 @@ export default class NavLeft extends Component {
       if (item.children) {
         return (
           <SubMenu title={ item.title } key={ item.key }>
-            <Menu.Item key={ item.key }>
-              { this.renderMenu(item.children) }
-            </Menu.Item>
+            { this.renderMenu(item.children) }
           </SubMenu>
         )
       }

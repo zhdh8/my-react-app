@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { Layout } from 'antd'
 import styles from './index.module.scss'
-import NavLeft from '../../components/navLeft'
+import NavLeft from '../../components/NavLeft'
+import Header from '../../components/Header'
 
-const { Header, Sider, Content } = Layout
+const { Sider, Content } = Layout
 
 
 class Admin extends Component {
@@ -11,14 +12,13 @@ class Admin extends Component {
   render () {
     return (
       <Layout>
-        <Header className={ styles.pageHeader }>Header</Header>
+        <Header></Header>
         <Layout>
           <Sider className={ styles.pageSideBar }>
             <NavLeft></NavLeft>
           </Sider>
-          <Content className={ styles.pageContent }>{ this.props.children.props.children }</Content>
+          <Content className={ styles.pageContent }>{ this.props.children }</Content>
         </Layout>
-        {/* <Footer>Footer</Footer> */}
       </Layout>
     )
   }
