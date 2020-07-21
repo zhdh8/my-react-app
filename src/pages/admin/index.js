@@ -9,13 +9,20 @@ const { Sider, Content } = Layout
 
 class Admin extends Component {
 
+  componentWillMount () {
+
+    this.setState({
+      pathConfig: this.props.pathConfig
+    })
+  }
+
   render () {
     return (
       <Layout>
         <Header></Header>
         <Layout>
           <Sider className={ styles.pageSideBar }>
-            <NavLeft></NavLeft>
+            <NavLeft pathConfig={ this.state.pathConfig }></NavLeft>
           </Sider>
           <Content className={ styles.pageContent }>{ this.props.children }</Content>
         </Layout>

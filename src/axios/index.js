@@ -4,16 +4,17 @@ import { message } from 'antd'
 // axios.defaults.withCredentials = true
 // axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'
 
-axios.defaults.baseURL = `http://192.168.0.144:20001/business/v1/`
+axios.defaults.baseURL = `http://192.168.0.107:7001/`
+// axios.defaults.baseURL = `http://192.168.0.112:20001/admin/v1/`
 // axios.defaults.baseURL = `https://test.jianchedashi.com:20001/business/v1/`
 
 
 axios.interceptors.request.use(config => {
 
-  config.headers['hci_agent'] = window.navigator.userAgent.replace(/\([0-9]+?\)/g, '')
+  config.headers['hsc_agent'] = window.navigator.userAgent.replace(/\([0-9]+?\)/g, '')
 
   // 已登录
-  if (sessionStorage.getItem('accessTokenGas')) config.headers['hci_b_signature'] = sessionStorage.getItem('accessTokenGas')
+  if (sessionStorage.getItem('accessTokenGas')) config.headers['hsc_a_signature'] = sessionStorage.getItem('accessTokenGas')
 
   return config
 }, error => {

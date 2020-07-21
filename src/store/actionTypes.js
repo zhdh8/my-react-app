@@ -1,0 +1,1 @@
+export const GET_SOURCE_LIST = 'get_source_list'

@@ -60,17 +60,15 @@ class Login extends React.Component {
       if (!errors) {
         // console.log(values)
         // console.log(this.props.form.getFieldsValue())
-        const { data } = await axios.post('gas/login', {
+        const { data } = await axios.post('login', {
           account: values.username,
           password: values.password
         })
 
         if (data.status) {
           sessionStorage.setItem('accessTokenGas', data.data.key)
-          message.success('登陆成功', () => {
-
-            this.props.history.push('/')
-          })
+          message.success('登陆成功')
+          this.props.history.replace('/group')
         }
       }
     })

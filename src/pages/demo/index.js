@@ -2,9 +2,22 @@ import React from 'react';
 import { Button, DatePicker } from 'antd';
 // import { Router, Route, Link } from 'react-router-dom';
 import moment from 'moment';
+import { connect } from 'react-redux'
+import { getSourceList } from '../../store/actionCreators'
 
 
-export default class demo extends React.Component {
+const mapDispatchToProps = disaptch => {
+
+  return {
+    getSourceList: () => disaptch(getSourceList())
+  }
+}
+
+class demo extends React.Component {
+
+  componentDidMount () {
+    // this.props.getSourceList()
+  }
 
   render () {
 
@@ -60,3 +73,5 @@ export default class demo extends React.Component {
   //   return current < moment().subtract(1, 'day') //！！！！！当天之前的不可选，不包括当天
   // }
 }
+
+export default connect(null, mapDispatchToProps)(demo)

@@ -20,8 +20,13 @@ const menuConfig = [
         auth: true,
       },
       {
-        title: '活动',
-        key: '/demo1'
+        title: '集团管理',
+        key: '/group',
+        auth: true,
+      },
+      {
+        title: 'hook',
+        key: '/hook',
       },
     ]
   }
@@ -35,26 +40,18 @@ export default class NavLeft extends Component {
 
     this.state = {
       menu: null,
-      currKey: null,
+      selectedKeys: null,
     }
-  }
-
-  render () {
-
-    return (
-      <div>
-        <Menu mode="inline" onClick={ this.handleMenuClick }>
-          {/* { this.renderMenu(menuConfig) } */}
-          { this.state.menu }
-        </Menu>
-      </div>
-    )
   }
 
   componentDidMount () {
 
+    console.log(this.props.pathConfig)
+
     this.setState({
-      menu: this.renderMenu(menuConfig)
+      menu: this.renderMenu(menuConfig),
+      selectedKeys: this.props.pathConfig.path,
+      openKeys: this.props.pathConfig.subMenu || []
     })
   }
 
@@ -68,7 +65,7 @@ export default class NavLeft extends Component {
         )
       }
       return (
-        <Menu.Item title={item.title} key={item.key}>
+        <Menu.Item title={ item.title } key={ item.key }>
           <NavLink to={ item.key }>{ item.title }</NavLink>
         </Menu.Item>
       )
@@ -77,9 +74,30 @@ export default class NavLeft extends Component {
 
   handleMenuClick = ({item, key}) => {
 
-    if (key === this.state.currKey) return false
+    if (key === this.state.selectedKeys) return false
     this.setState({
-      currKey: key
+      selectedKeys: key
     })
+  }
+
+  handleOpenChange = (e) => {
+
+    this.setState({
+      openKeys: e,
+    })
+  }
+
+  render () {
+
+    const { selectedKeys, openKeys } = this.state
+
+    return (
+      <div>
+        <Menu mode="inline" onClick={ this.handleMenuClick } selectedKeys={ selectedKeys } openKeys={ openKeys } onOpenChange={ this.handleOpenChange }>
+          {/* { this.renderMenu(menuConfig) } */}
+          { this.state.menu }
+        </Menu>
+      </div>
+    )
   }
 }

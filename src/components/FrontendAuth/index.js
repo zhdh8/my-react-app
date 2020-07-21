@@ -6,7 +6,7 @@ import Admin from '../../pages/admin'
 export default class FrontendAuth extends React.Component {
 
   render () {
-    const isLogin = sessionStorage.getItem('accessTokenGas')
+    const isLogin = sessionStorage.getItem('accessTokenGas') || false
     const { config, location } = this.props
     const targetRouterConfig = config.find((item) => item.path === location.pathname)
 
@@ -39,7 +39,7 @@ export default class FrontendAuth extends React.Component {
 
         return (
           <Route path="/" render={() =>
-            <Admin>
+            <Admin pathConfig={ targetRouterConfig }>
               <Route exact path={ targetRouterConfig.path } component={ targetRouterConfig.component } />
             </Admin>
           }></Route>
