@@ -2,7 +2,7 @@ import React, { useState, useEffect, useReducer } from 'react'
 import { Table, Button, Pagination, } from 'antd'
 import axios from '../../axios'
 import reducer from '../../store/reducer'
-import { getSourceList } from '../../store/actionCreators'
+// import { getSourceList } from '../../store/actionCreators'
 
 const columns = [
   {
@@ -43,26 +43,6 @@ const Group = (props) => {
 
   const [state, dispatch] = useReducer(reducer, {name: 'zdd'})
 
-  async function load() {
-
-    try {
-
-      const { data } =  await axios.post('gas/stationGroup/load', { ...submitData, })
-
-      if (data.status) {
-
-        setDataList(data.data)
-        setSubmitData({
-          ...submitData,
-          total: +data.total,
-        })
-      }
-    } catch(e) {
-
-      console.log(e, 'load error')
-    }
-  }
-
   function pageChange (page) {
 
     setSubmitData({
@@ -75,10 +55,29 @@ const Group = (props) => {
 
   useEffect(() => {
 
-    load()
-    console.log(props)
-    dispatch(getSourceList())
-  })
+    ((async function load() {
+
+      try {
+
+        const { data } =  await axios.get('users')
+
+        if (data.status) {
+
+          console.log(data.data)
+
+          setDataList(data.data)
+          // setSubmitData({
+          //   ...submitData,
+          //   total: +data.total,
+          // })
+        }
+      } catch(e) {
+
+        console.log(e, 'load error')
+      }
+    })())
+    // dispatch(getSourceList())
+  }, [])
 
   return (
     <div>

@@ -14,7 +14,7 @@ axios.interceptors.request.use(config => {
   config.headers['hsc_agent'] = window.navigator.userAgent.replace(/\([0-9]+?\)/g, '')
 
   // 已登录
-  if (sessionStorage.getItem('accessTokenGas')) config.headers['hsc_a_signature'] = sessionStorage.getItem('accessTokenGas')
+  if (sessionStorage.getItem('accessTokenGas')) config.headers['Authorization'] = `Bearer ${sessionStorage.getItem('accessTokenGas')}`
 
   return config
 }, error => {
